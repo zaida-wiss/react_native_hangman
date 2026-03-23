@@ -23,25 +23,27 @@ export default function GameScreen() {
     // Max antal steg innan kollision (default 10)
     const MAX_STEPS = 10;
 
-    // Emoji för gubbe och berg
-    const GUY = '🚶';
-    const WALL = '🗻';
 
-    // Beräkna positionen för gubben (0 = längst till vänster, MAX_STEPS = vid väggen)
+    // Emoji för gubbe och eld
+    const GUY = '🚶';
+    const FIRE = '🔥';
+
+    // Beräkna positionen för gubben (0 = längst till vänster, MAX_STEPS = vid elden)
     const guyPosition = Math.min(incorrectGuesses, MAX_STEPS);
 
-    // Skapa en rad med gubben som rör sig närmare väggen för varje fel
+    // Skapa en rad med elden alltid längst till vänster och gubben som går mot elden från höger
     const renderGuyRow = () => {
       const row = [];
-      // Avståndet mellan gubben och väggen minskar för varje fel
-      for (let i = 0; i < MAX_STEPS - guyPosition; i++) {
-        row.push(<Text key={i} style={{fontSize: 32}}>{' '}</Text>);
+      // Elden alltid först
+      row.push(<Text key="fire" style={{fontSize: 32}}>{FIRE}</Text>);
+      // Tomma steg mellan elden och gubben
+      for (let i = 1; i < MAX_STEPS + 1; i++) {
+        if (i === MAX_STEPS + 1 - guyPosition) {
+          row.push(<Text key="guy" style={{fontSize: 32}}>{GUY}</Text>);
+        } else {
+          row.push(<Text key={"space-"+i} style={{fontSize: 32}}>{' '}</Text>);
+        }
       }
-      row.push(<Text key="guy" style={{fontSize: 32}}>{GUY}</Text>);
-      for (let i = 0; i < guyPosition; i++) {
-        row.push(<Text key={MAX_STEPS + i} style={{fontSize: 32}}>{' '}</Text>);
-      }
-      row.push(<Text key="wall" style={{fontSize: 32}}>{WALL}</Text>);
       return <View style={{flexDirection: 'row', marginBottom: 16, marginTop: 8, justifyContent: 'center', minHeight: 40}}>{row}</View>;
     };
 
@@ -74,7 +76,7 @@ export default function GameScreen() {
   return (
     <View style={styles.container}>
       {/* Titel för spelet */}
-      <Text style={styles.title}>Hänga Gubbe</Text>
+      <Text style={styles.title}>Akta elden!</Text>
       {/* Gubbe som rör sig mot bergsvägg */}
       {renderGuyRow()}
       {/* Visar bokstäver eller understreck för varje bokstav i ordet */}
