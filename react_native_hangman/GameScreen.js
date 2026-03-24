@@ -35,11 +35,11 @@ export default function GameScreen() {
     const renderGuyRow = () => {
       const row = [];
       // Elden alltid först
-      row.push(<Text key="fire" style={{fontSize: 32}}>{FIRE}</Text>);
+      row.push(<Text key="fire" style={{fontSize: 62}}>{FIRE}</Text>);
       // Tomma steg mellan elden och gubben
       for (let i = 1; i < MAX_STEPS + 1; i++) {
         if (i === MAX_STEPS + 1 - guyPosition) {
-          row.push(<Text key="guy" style={{fontSize: 32}}>{GUY}</Text>);
+          row.push(<Text key="guy" style={{fontSize: 62}}>{GUY}</Text>);
         } else {
           row.push(<Text key={"space-"+i} style={{fontSize: 32}}>{' '}</Text>);
         }
@@ -141,20 +141,20 @@ const styles = StyleSheet.create({
   },
   wordContainer: {
     flexDirection: 'row',
-    marginBottom: 60,
+    marginBottom: 100,
   },
   letter: {
-    fontSize: 28,
+    fontSize: 48,
     marginHorizontal: 4,
   },
   alphabetContainer: {
-    position: 'fixed',
-    bottom: 20,
-    left: 0,
-    right: 0,
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 10,
+    paddingHorizontal: 0,
+    paddingBottom: 40,
   },
   alphabetRow: {
     flexDirection: 'row',
@@ -163,10 +163,10 @@ const styles = StyleSheet.create({
   },
   alphabetButton: {
     borderRadius: 6,
-    marginHorizontal: 3,
+    marginHorizontal: 2,
     paddingVertical: 6,
     paddingHorizontal: 6,
-    minWidth: 24,
+    minWidth: 27,
     alignItems: 'center',
     justifyContent: 'center',
     elevation: 2,
@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     borderColor: '#aaa',
   },
   alphabetText: {
-    fontSize: 16,
+    fontSize: 26,
     fontWeight: 'bold',
     letterSpacing: 0.5,
   },
