@@ -175,10 +175,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff200', // Gul för att "poppa"
     borderWidth: 2,
     borderColor: '#222',
-    shadowColor: '#222',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 2,
+    // Ersätt shadow* med boxShadow för webben
+    boxShadow: '0px 2px 4px rgba(34,34,34,0.3)',
   },
   alphabetButtonDisabled: {
     backgroundColor: '#ccc', // Grå för "slocknad"
@@ -192,9 +190,8 @@ const styles = StyleSheet.create({
   },
   alphabetTextActive: {
     color: '#222',
-    textShadowColor: '#fff',
-    textShadowOffset: { width: 1, height: 1 },
-    textShadowRadius: 2,
+    // Ersätt textShadow* med textShadow för webben
+    textShadow: '1px 1px 2px #fff',
   },
   alphabetTextDisabled: {
     color: '#888',
